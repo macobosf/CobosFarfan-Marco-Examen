@@ -22,21 +22,21 @@ public class Comidas implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn
-	private Pedido pedidos;
+	private Pedido comidaPedido;
 	
 	public Comidas() {
 		super();
 	}
-	
-	
 
-	public Comidas(int codigo, String nombre, double precioUnitario, Pedido pedidos) {
+	public Comidas(int codigo, String nombre, double precioUnitario, Pedido comidaPedido) {
 		super();
 		this.codigo = codigo;
 		this.nombre = nombre;
 		this.precioUnitario = precioUnitario;
-		this.pedidos = pedidos;
+		this.comidaPedido = comidaPedido;
 	}
+
+
 
 
 
@@ -64,30 +64,27 @@ public class Comidas implements Serializable {
 		this.precioUnitario = precioUnitario;
 	}
 
-	public Pedido getPedidos() {
-		return pedidos;
-	}
-
-	public void setPedidos(Pedido pedidos) {
-		this.pedidos = pedidos;
+	public Pedido getComidaPedido() {
+		return comidaPedido;
 	}
 
 
+	public void setComidaPedido(Pedido comidaPedido) {
+		this.comidaPedido = comidaPedido;
+	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + codigo;
+		result = prime * result + ((comidaPedido == null) ? 0 : comidaPedido.hashCode());
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
-		result = prime * result + ((pedidos == null) ? 0 : pedidos.hashCode());
 		long temp;
 		temp = Double.doubleToLongBits(precioUnitario);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		return result;
 	}
-
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -100,28 +97,26 @@ public class Comidas implements Serializable {
 		Comidas other = (Comidas) obj;
 		if (codigo != other.codigo)
 			return false;
+		if (comidaPedido == null) {
+			if (other.comidaPedido != null)
+				return false;
+		} else if (!comidaPedido.equals(other.comidaPedido))
+			return false;
 		if (nombre == null) {
 			if (other.nombre != null)
 				return false;
 		} else if (!nombre.equals(other.nombre))
-			return false;
-		if (pedidos == null) {
-			if (other.pedidos != null)
-				return false;
-		} else if (!pedidos.equals(other.pedidos))
 			return false;
 		if (Double.doubleToLongBits(precioUnitario) != Double.doubleToLongBits(other.precioUnitario))
 			return false;
 		return true;
 	}
 
-
 	@Override
 	public String toString() {
-		return "Comidas [codigo=" + codigo + ", nombre=" + nombre + ", precioUnitario=" + precioUnitario + ", pedidos="
-				+ pedidos + "]";
+		return "Comidas [codigo=" + codigo + ", nombre=" + nombre + ", precioUnitario=" + precioUnitario
+				+ ", comidaPedido=" + comidaPedido + "]";
 	}
-	
 	
    
 }
