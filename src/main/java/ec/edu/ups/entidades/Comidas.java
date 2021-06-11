@@ -37,9 +37,6 @@ public class Comidas implements Serializable {
 	}
 
 
-
-
-
 	public int getCodigo() {
 		return codigo;
 	}
